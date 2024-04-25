@@ -1,0 +1,30 @@
+apiVersion: carto.run/v1alpha1
+kind: Deliverable
+metadata:
+  name: workload-web-no-custom-ca
+  namespace: jeremy
+  labels:
+    app.kubernetes.io/part-of: workload-web-no-custom-ca
+    apps.tanzu.vmware.com/auto-configure-actuators: "true"
+    apps.tanzu.vmware.com/has-tests: "true"
+    apps.tanzu.vmware.com/workload-type: web
+    app.kubernetes.io/component: deliverable
+    app.tanzu.vmware.com/deliverable-type: web
+    carto.run/cluster-template-name: config-deliverable-template
+    carto.run/resource-name: deliverable-cnfg
+    carto.run/supply-chain-name: source-test-scan-to-url
+    carto.run/template-kind: ClusterConfigTemplate
+    carto.run/template-lifecycle: mutable
+    carto.run/workload-name: workload-web-no-custom-ca
+    carto.run/workload-namespace: jeremy
+spec:
+  params:
+  - name: gitops_ssh_secret
+    value: git-basic-auth
+  source:
+    git:
+      url: https://github.com/Mpluya/tap-gitops-config.git
+      ref:
+        branch: main
+    subPath: config/jeremy/workload-web-no-custom-ca
+
