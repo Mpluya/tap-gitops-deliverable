@@ -1,0 +1,32 @@
+apiVersion: carto.run/v1alpha1
+kind: Deliverable
+metadata:
+  name: java-rest-service
+  namespace: mae
+  labels:
+    apis.apps.tanzu.vmware.com/register-api: "true"
+    app.kubernetes.io/part-of: java-rest-service
+    apps.tanzu.vmware.com/auto-configure-actuators: "true"
+    apps.tanzu.vmware.com/has-tests: "true"
+    apps.tanzu.vmware.com/workload-type: web
+    backstage.io/kubernetes-id: customer-profile
+    app.kubernetes.io/component: deliverable
+    app.tanzu.vmware.com/deliverable-type: web
+    carto.run/cluster-template-name: config-deliverable-template
+    carto.run/resource-name: deliverable-cnfg
+    carto.run/supply-chain-name: source-test-scan-to-url
+    carto.run/template-kind: ClusterConfigTemplate
+    carto.run/template-lifecycle: mutable
+    carto.run/workload-name: java-rest-service
+    carto.run/workload-namespace: mae
+spec:
+  params:
+  - name: gitops_ssh_secret
+    value: git-basic-auth
+  source:
+    git:
+      url: https://github.com/Mpluya/tap-gitops-config.git
+      ref:
+        branch: main
+    subPath: config/mae/java-rest-service
+
