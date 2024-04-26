@@ -5,7 +5,6 @@ metadata:
   namespace: jeremy
   labels:
     app.kubernetes.io/part-of: workload-server-with-custom-ca
-    apps.tanzu.vmware.com/auto-configure-actuators: "true"
     apps.tanzu.vmware.com/has-tests: "true"
     apps.tanzu.vmware.com/workload-type: server
     app.kubernetes.io/component: deliverable
